@@ -1,0 +1,208 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Yet Another Node.js  Application API",
+      "description": "Yet Another Node.js Application API"
+      
+    },
+    "host": "productdemotest.herokuapp.com",
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "Product",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": [
+      "http",
+      "https"
+    ],
+   
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    
+   
+    "paths": {
+      "/product": {
+        "post": {
+          "tags": [
+            "Products"
+          ],
+          "description": "Create new product in system",
+          "parameters": [
+            {
+              "name": "Products",
+              "in": "body",
+              "description": "Product that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Products"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New product is created",
+              "schema": {
+                "$ref": "#/definitions/Products"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Products"
+          ],
+          "summary": "Get all products in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Products"
+              }
+            }
+          }
+        }
+      },
+
+      "/search/{value}": {
+        "parameters": [
+          {
+            "name": "value",
+            "in": "path",
+            "required": true,
+            "description": "value for searching products",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Products"
+          ],
+          "summary": "Get Products which are user searched",
+          "responses": {
+            "200": {
+              "description": "Product is found",
+              "schema": {
+                "$ref": "#/definitions/Proudcts"
+              }
+            }
+          }
+        }
+    },
+
+    "/filter": {
+        "get": {
+            "tags": [
+              "Product Filters"
+            ],
+            "summary": "Get all products filters in system",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/Products"
+                }
+              }
+            }
+          }
+        
+      },
+
+    "/filter/{filterBy}/{value}": {
+        "parameters": [
+          {
+            "name": "filterBy",
+            "in": "path",
+            "required": true,
+            "description": "filter by category for searching products",
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "in": "path",
+            "required": true,
+            "description": "value for searching products",
+            "type": "string"
+          }
+
+        ],
+        "get": {
+          "tags": [
+            "Product Filters"
+          ],
+          "summary": "Get Products which are user searched",
+          "responses": {
+            "200": {
+              "description": "Product is found",
+              "schema": {
+                "$ref": "#/definitions/Proudcts"
+              }
+            }
+          }
+        }
+    }
+     
+
+     
+ 
+
+
+    },
+
+    "definitions": {
+      "Products": {
+        "required": [
+          "producName",
+          "productImage",
+          "gender",
+          "category",
+          "brand",
+          "mrp",
+          "price"
+
+
+        ],
+        "properties": {
+
+            "productName": {
+                "type": "string"
+                
+            },
+            "productImage":{
+                "type": "string"
+        
+            },
+            "gender": {
+                "type": "string"
+            },
+            "category": {
+                "type": "string"    
+            },
+            "brand": {
+                "type": "string"
+            },
+            "mrp": {
+                "type": "number"
+            },
+            "price":{
+                "type": "number"
+
+            }        
+
+          
+        }
+      }
+
+
+    }
+
+  }
+  

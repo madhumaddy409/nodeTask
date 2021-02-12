@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const app = express()
 const mongoose = require('mongoose')
+const swaggerUi = require('swagger-ui-express'),
+swaggerDocument = require('./swagger.json');
 
 
 const prodRoutes = require('./routes/product')
@@ -29,6 +31,10 @@ app.use(cookieParser())
 
 //Routes
 app.use("/api", prodRoutes)
+
+//swagger API
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api/v1', prodRoutes);
 
 const port = process.env.PORT || 3030
 app.listen(port,() => {

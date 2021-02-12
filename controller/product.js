@@ -5,7 +5,7 @@ exports.postProduct = async (req, res) => {
     const newProduct = new Product(req.body);
     try {
         const product = await newProduct.save();
-        res.status(201).json(product);
+        res.status(200).json(product);
     } catch (error) {
         res.status(400).json({
             "massage": error.massage
