@@ -55,59 +55,9 @@ exports.getFilters = async (req, res) => {
 //filter
 exports.getFilterProducts = async (req, res) => {
     const { filterBy , value } = req.params
-    if(filterBy === "category")
-    {
-        try {
-            const products = await Product.find({category: value})
+
+    const products = await Product.find({ [filterBy]: value})
             res.status(200).json(products);
-        } catch (error) {
-            res.status(400).json({
-                "massage": error.massage
-            })
-        } 
-
-    }
-    else if(filterBy === "gender")
-    {
-        try {
-            const products = await Product.find({gender: value})
-            res.status(200).json(products);
-        } catch (error) {
-            res.status(400).json({
-                "massage": error.massage
-            })
-        } 
-
-    }
-    else if(filterBy === "brand")
-    {
-        try {
-            const products = await Product.find({brand: value})
-            res.status(200).json(products);
-        } catch (error) {
-            res.status(400).json({
-                "massage": error.massage
-            })
-        } 
-
-    }
-    else if(filterBy === "price")
-    {
-        try {
-            const products = await Product.find({price: value})
-            res.status(200).json(products);
-        } catch (error) {
-            res.status(400).json({
-                "massage": error.massage
-            })
-        } 
-
-    }else{
-        res.status(400).json({
-            "massage": "category not found"
-        })
-
-    }
 
 }
 
